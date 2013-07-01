@@ -147,7 +147,7 @@ public class FormListaGeneros extends JDialog {
 		}
 
 		int result = JOptionPane.showConfirmDialog(this,
-				"Confirma a exclusão deste filme ?");
+				"Confirma a exclusão deste gênero ?");
 		if (result > 0) {
 			return;
 		}

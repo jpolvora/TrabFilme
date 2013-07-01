@@ -8,8 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import trabFilme.Negocios.*;
 import trabFilme.Persistencia.*;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -47,6 +49,10 @@ public class FormFilme extends JDialog {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Msg",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -149,7 +155,7 @@ public class FormFilme extends JDialog {
 		this.idFilme = idFilme;
 	}
 
-	private void getDados() throws SQLException {
+	private void getDados() throws Exception {
 		Filme filme = null;
 		if (this.idFilme > 0) {
 			filme = regrasFilmes.getFilme(this.idFilme);
@@ -169,6 +175,10 @@ public class FormFilme extends JDialog {
 		Integer cmbIndex = 0, laco = 0;
 
 		List<Genero> listaGeneros = regrasGeneros.getGeneros(null);
+		if (listaGeneros.isEmpty()) {
+			throw new Exception(
+					"Tabela de Gêneros não contém dados. É necessário cadastrar gêneros antes de incluir filmes!");
+		}
 		for (Genero g : listaGeneros) {
 			if (g.getIdGenero() == filme.getIdGenero())
 				cmbIndex = laco;
