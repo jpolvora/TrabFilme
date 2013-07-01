@@ -31,22 +31,22 @@ public class RegrasGeneros {
 		return generos.getById(id);
 	}
 
-	public String IncluiGenero(Genero g) throws SQLException {
+	public String incluiGenero(Genero g) throws SQLException {
 		// validar o genero
-		String msg = ValidaGenero(g, false);
+		String msg = validaGenero(g, false);
 		if (msg.isEmpty())
 			generos.incluir(g);
 		return msg;
 	}
 
-	public String AlterarGenero(Genero g) throws SQLException {
-		String msg = ValidaGenero(g, true);
+	public String alterarGenero(Genero g) throws SQLException {
+		String msg = validaGenero(g, true);
 		if (msg.isEmpty())
 			generos.alterar(g);
 		return msg;
 	}
 
-	public String ExcluiGenero(int id) throws SQLException {
+	public String excluiGenero(int id) throws SQLException {
 		if (generos.permiteExcluir(id)) {
 			generos.excluir(id);
 			return "";
@@ -55,7 +55,7 @@ public class RegrasGeneros {
 		}
 	}
 
-	private String ValidaGenero(Genero genero, Boolean alteracao)
+	private String validaGenero(Genero genero, Boolean alteracao)
 			throws SQLException {
 
 		if (genero.getDescricao() == null

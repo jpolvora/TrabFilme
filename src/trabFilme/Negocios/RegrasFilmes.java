@@ -32,24 +32,24 @@ public class RegrasFilmes {
 		return filmes.getNextId();
 	}
 
-	public String IncluiFilme(Filme filme) throws SQLException {
+	public String incluiFilme(Filme filme) throws SQLException {
 		// validar o filme
-		String msg = ValidaFilme(filme, false);
+		String msg = validaFilme(filme, false);
 		if (msg.isEmpty())
 			filmes.incluir(filme);
 		return msg;
 	}
 
-	public String AlteraFilme(Filme filme) throws SQLException {
+	public String alteraFilme(Filme filme) throws SQLException {
 		// validar o filme
-		String msg = ValidaFilme(filme, true);
+		String msg = validaFilme(filme, true);
 		if (msg.isEmpty())
 			filmes.alterar(filme);
 		return msg;
 
 	}
 
-	public String ExcluiFilme(int idFilme) throws SQLException {
+	public String excluiFilme(int idFilme) throws SQLException {
 		if (filmes.permiteExcluir(idFilme)) {
 			filmes.excluir(idFilme);
 			return "";
@@ -58,7 +58,7 @@ public class RegrasFilmes {
 		}
 	}
 
-	private String ValidaFilme(Filme filme, Boolean alteracao)
+	private String validaFilme(Filme filme, Boolean alteracao)
 			throws SQLException {
 
 		if (filme.getNome() == null || filme.getNome().length() == 0) {

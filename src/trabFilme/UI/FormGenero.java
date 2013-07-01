@@ -140,10 +140,10 @@ public class FormGenero extends JDialog {
 
 			String msg = "";
 			if (update) {
-				msg = regrasGeneros.AlterarGenero(genero);
+				msg = regrasGeneros.alterarGenero(genero);
 
 			} else {
-				msg = regrasGeneros.IncluiGenero(genero);
+				msg = regrasGeneros.incluiGenero(genero);
 			}
 
 			if (msg != null && !msg.isEmpty()) {

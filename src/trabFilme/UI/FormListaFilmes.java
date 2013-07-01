@@ -163,7 +163,7 @@ public class FormListaFilmes extends JDialog {
 
 		Integer idFilme = (Integer) model.getValueAt(row, 0);
 		try {
-			String msg = regrasFilmes.ExcluiFilme(idFilme);
+			String msg = regrasFilmes.excluiFilme(idFilme);
 			if (msg != null && !msg.isEmpty()) {
 				JOptionPane.showMessageDialog(null, msg, "Exclusão",
 						JOptionPane.WARNING_MESSAGE);

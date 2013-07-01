@@ -209,10 +209,10 @@ public class FormFilme extends JDialog {
 
 			String msg = "";
 			if (update) {
-				msg = regrasFilmes.AlteraFilme(filme);
+				msg = regrasFilmes.alteraFilme(filme);
 
 			} else {
-				msg = regrasFilmes.IncluiFilme(filme);
+				msg = regrasFilmes.incluiFilme(filme);
 			}
 
 			if (msg != null && !msg.isEmpty()) {

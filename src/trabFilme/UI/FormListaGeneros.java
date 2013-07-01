@@ -156,7 +156,7 @@ public class FormListaGeneros extends JDialog {
 
 		Integer id = (Integer) model.getValueAt(row, 0);
 		try {
-			String msg = regrasGeneros.ExcluiGenero(id);
+			String msg = regrasGeneros.excluiGenero(id);
 			if (msg != null && !msg.isEmpty()) {
 				JOptionPane.showMessageDialog(null, msg, "Exclusão",
 						JOptionPane.WARNING_MESSAGE);
