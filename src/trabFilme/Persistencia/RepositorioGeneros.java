@@ -78,7 +78,7 @@ public class RepositorioGeneros extends Repositorio {
 				"INSERT INTO GENERO (idGenero, Descricao) VALUES (%s, '%s')",
 				getNextId(), genero.getDescricao());
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	public void alterar(Genero genero) throws SQLException {
@@ -86,18 +86,18 @@ public class RepositorioGeneros extends Repositorio {
 				"UPDATE GENERO SET Descricao = '%s' WHERE idGenero = %s",
 				genero.getDescricao(), genero.getIdGenero());
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	public void excluir(int id) throws SQLException {
 		String sql = String
 				.format("DELETE FROM GENERO WHERE idGenero = %s", id);
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	@Override
-	public Boolean Existe(String valor) throws SQLException {
+	public Boolean jaExiste(String valor) throws SQLException {
 		Boolean existe = false;
 
 		String sql = String.format(
@@ -118,7 +118,7 @@ public class RepositorioGeneros extends Repositorio {
 	}
 
 	@Override
-	public Boolean PodeExcluir(int id) throws SQLException {
+	public Boolean permiteExcluir(int id) throws SQLException {
 		Boolean result = false;
 
 		String sql = String.format(

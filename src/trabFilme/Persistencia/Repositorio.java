@@ -6,15 +6,15 @@ import java.sql.Statement;
 
 public abstract class Repositorio {
 
-	public Boolean Existe(String valor) throws SQLException {
+	public Boolean jaExiste(String valor) throws SQLException {
 		return false;
 	}
 
-	public Boolean PodeExcluir(int id) throws SQLException {
+	public Boolean permiteExcluir(int id) throws SQLException {
 		return true;
 	}
 
-	protected int InsertUpdateDelete(final String sql) {
+	protected int insertOrUpdateOrDelete(final String sql) {
 		Connection conn = null;
 		Statement stmt = null;
 		try {

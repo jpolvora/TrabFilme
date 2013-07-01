@@ -40,14 +40,14 @@ public class RegrasGeneros {
 	}
 
 	public String AlterarGenero(Genero g) throws SQLException {
-		String msg = ValidaGenero(g, false);
+		String msg = ValidaGenero(g, true);
 		if (msg.isEmpty())
 			generos.alterar(g);
 		return msg;
 	}
 
 	public String ExcluiGenero(int id) throws SQLException {
-		if (generos.PodeExcluir(id)) {
+		if (generos.permiteExcluir(id)) {
 			generos.excluir(id);
 			return "";
 		} else {
@@ -64,7 +64,7 @@ public class RegrasGeneros {
 		}
 
 		if (!alteracao) {
-			if (generos.Existe(genero.getDescricao())) {
+			if (generos.jaExiste(genero.getDescricao())) {
 				return "Gênero com esta descrição já existe !";
 			}
 		}

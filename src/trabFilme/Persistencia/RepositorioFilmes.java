@@ -88,7 +88,7 @@ public class RepositorioFilmes extends Repositorio {
 						getNextId(), filme.getNome(), filme.getIdGenero(),
 						filme.getAnoLancamento(), filme.getDuracao());
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	public void alterar(Filme filme) throws SQLException {
@@ -98,17 +98,17 @@ public class RepositorioFilmes extends Repositorio {
 						filme.getAnoLancamento(), filme.getDuracao(),
 						filme.getIdFilme());
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	public void excluir(int id) throws SQLException {
 		String sql = String.format("DELETE FROM FILME WHERE idFilme = %s", id);
 
-		InsertUpdateDelete(sql);
+		insertOrUpdateOrDelete(sql);
 	}
 
 	@Override
-	public Boolean Existe(String valor) throws SQLException {
+	public Boolean jaExiste(String valor) throws SQLException {
 		Boolean existe = false;
 
 		String sql = String.format(

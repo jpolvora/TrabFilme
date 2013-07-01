@@ -50,7 +50,7 @@ public class RegrasFilmes {
 	}
 
 	public String ExcluiFilme(int idFilme) throws SQLException {
-		if (filmes.PodeExcluir(idFilme)) {
+		if (filmes.permiteExcluir(idFilme)) {
 			filmes.excluir(idFilme);
 			return "";
 		} else {
@@ -75,7 +75,7 @@ public class RegrasFilmes {
 			return "Ano de lançamento do filme deve ser maior que 0!";
 
 		if (!alteracao) {
-			if (filmes.Existe(filme.getNome())) {
+			if (filmes.jaExiste(filme.getNome())) {
 				return "Filme com este nome já existe !";
 			}
 		}
