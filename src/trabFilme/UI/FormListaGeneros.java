@@ -37,7 +37,7 @@ public class FormListaGeneros extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				carregaDados();
+				carregaDados(null);
 			}
 		});
 
@@ -72,6 +72,11 @@ public class FormListaGeneros extends JDialog {
 		toolBar.add(btnExcluir);
 
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				consultar();
+			}
+		});
 		toolBar.add(btnConsultar);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -88,14 +93,14 @@ public class FormListaGeneros extends JDialog {
 		regrasGeneros = new RegrasGeneros();
 	}
 
-	void carregaDados() {
+	void carregaDados(String filtro) {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
 
-		List<Genero> generos = regrasGeneros.getGeneros();
+		List<Genero> generos = regrasGeneros.getGeneros(filtro);
 		for (Genero g : generos) {
 			Object[] data = new Object[] { g.getIdGenero(), g.getDescricao() };
 			model.addRow(data);
@@ -109,7 +114,7 @@ public class FormListaGeneros extends JDialog {
 		frm.setModalityType(ModalityType.APPLICATION_MODAL);
 		frm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frm.setVisible(true);
-		carregaDados();
+		carregaDados(null);
 	}
 
 	void Alteracao() {
@@ -128,7 +133,7 @@ public class FormListaGeneros extends JDialog {
 		frm.setModalityType(ModalityType.APPLICATION_MODAL);
 		frm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frm.setVisible(true);
-		carregaDados();
+		carregaDados(null);
 	}
 
 	void Exclusao() {
@@ -161,6 +166,16 @@ public class FormListaGeneros extends JDialog {
 			e.printStackTrace();
 		}
 
-		carregaDados();
+		carregaDados(null);
+	}
+	
+	void consultar() {
+		String filtro = JOptionPane
+				.showInputDialog("Digite o valor a ser pesquisado:");
+		if (filtro != null)
+			carregaDados(filtro);
+		else
+			carregaDados(null);
+
 	}
 }

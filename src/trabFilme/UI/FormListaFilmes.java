@@ -40,9 +40,7 @@ public class FormListaFilmes extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				// JOptionPane.showMessageDialog(null, "getFilmes!", "Msg",
-				// JOptionPane.INFORMATION_MESSAGE);
-				carregaDados();
+				carregaDados(null);
 			}
 		});
 
@@ -77,6 +75,11 @@ public class FormListaFilmes extends JDialog {
 		toolBar.add(btnExcluir);
 
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				consultar();
+			}
+		});
 		toolBar.add(btnConsultar);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -96,14 +99,14 @@ public class FormListaFilmes extends JDialog {
 		regrasFilmes = new RegrasFilmes();
 	}
 
-	void carregaDados() {
+	void carregaDados(String filtro) {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		while (model.getRowCount() > 0) {
 			model.removeRow(0);
 		}
 
-		List<Filme> filmes = regrasFilmes.getFilmes();
+		List<Filme> filmes = regrasFilmes.getFilmes(filtro);
 		for (Filme f : filmes) {
 			Object[] data = new Object[] { f.getIdFilme(), f.getNome(),
 					f.getGenero(), f.getAnoLancamento(), f.getDuracao() };
@@ -118,7 +121,7 @@ public class FormListaFilmes extends JDialog {
 		frm.setModalityType(ModalityType.APPLICATION_MODAL);
 		frm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frm.setVisible(true);
-		carregaDados();
+		carregaDados(null);
 	}
 
 	void Alteracao() {
@@ -137,7 +140,7 @@ public class FormListaFilmes extends JDialog {
 		frm.setModalityType(ModalityType.APPLICATION_MODAL);
 		frm.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frm.setVisible(true);
-		carregaDados();
+		carregaDados(null);
 	}
 
 	void Exclusao() {
@@ -171,6 +174,16 @@ public class FormListaFilmes extends JDialog {
 			e.printStackTrace();
 		}
 
-		carregaDados();
+		carregaDados(null);
+	}
+
+	void consultar() {
+		String filtro = JOptionPane
+				.showInputDialog("Digite o valor a ser pesquisado:");
+		if (filtro != null)
+			carregaDados(filtro);
+		else
+			carregaDados(null);
+
 	}
 }

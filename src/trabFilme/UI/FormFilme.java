@@ -168,7 +168,7 @@ public class FormFilme extends JDialog {
 
 		Integer cmbIndex = 0, laco = 0;
 
-		List<Genero> listaGeneros = regrasGeneros.getGeneros();
+		List<Genero> listaGeneros = regrasGeneros.getGeneros(null);
 		for (Genero g : listaGeneros) {
 			if (g.getIdGenero() == filme.getIdGenero())
 				cmbIndex = laco;

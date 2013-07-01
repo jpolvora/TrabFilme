@@ -18,9 +18,13 @@ public class RepositorioFilmes extends Repositorio {
 	 * INT NOT NULL , `Duracao` INT NOT NULL , PRIMARY KEY (`idFilme`) );
 	 */
 
-	public List<Filme> getAll() throws SQLException {
+	public List<Filme> getAll(String filtro) throws SQLException {
 		String sql = "SELECT F.*, G.Descricao as genero FROM filme F"
-				+ " JOIN genero G on f.idGenero = g.idGenero ORDER BY F.idFilme";
+				+ " JOIN genero G on f.idGenero = g.idGenero ";
+
+		if (filtro != null)
+			sql += "WHERE nome LIKE '%" + filtro + "%'";
+		sql += " ORDER BY F.idFilme ";
 
 		PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();

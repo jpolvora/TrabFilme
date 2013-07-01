@@ -16,8 +16,12 @@ public class RepositorioGeneros extends Repositorio {
 	 * (`idGenero`) );
 	 */
 
-	public List<Genero> getAll() throws SQLException {
-		String sql = "SELECT G.* FROM Genero G Order By G.idGenero";
+	public List<Genero> getAll(String filtro) throws SQLException {
+		String sql = "SELECT G.* FROM Genero G ";
+		if (filtro != null) {
+			sql += " WHERE Descricao LIKE '%" + filtro + "%'";
+		}
+		sql += " Order By G.idGenero";
 
 		PreparedStatement stmt = Conexao.getConexao().prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();

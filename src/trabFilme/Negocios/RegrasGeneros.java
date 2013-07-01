@@ -14,9 +14,9 @@ public class RegrasGeneros {
 		generos = new RepositorioGeneros();
 	}
 
-	public List<Genero> getGeneros() {
+	public List<Genero> getGeneros(String filtro) {
 		try {
-			return generos.getAll();
+			return generos.getAll(filtro);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

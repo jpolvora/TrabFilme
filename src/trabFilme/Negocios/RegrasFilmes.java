@@ -15,9 +15,9 @@ public class RegrasFilmes {
 		filmes = new RepositorioFilmes();
 	}
 
-	public List<Filme> getFilmes() {
+	public List<Filme> getFilmes(String filtro) {
 		try {
-			return filmes.getAll();
+			return filmes.getAll(filtro);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
