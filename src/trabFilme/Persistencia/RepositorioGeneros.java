@@ -74,11 +74,7 @@ public class RepositorioGeneros extends Repositorio {
 				"INSERT INTO GENERO (idGenero, Descricao) VALUES (%s, '%s')",
 				getNextId(), genero.getDescricao());
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	public void alterar(Genero genero) throws SQLException {
@@ -86,22 +82,14 @@ public class RepositorioGeneros extends Repositorio {
 				"UPDATE GENERO SET Descricao = '%s' WHERE idGenero = %s",
 				genero.getDescricao(), genero.getIdGenero());
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	public void excluir(int id) throws SQLException {
 		String sql = String
 				.format("DELETE FROM GENERO WHERE idGenero = %s", id);
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	@Override

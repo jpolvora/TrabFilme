@@ -84,11 +84,7 @@ public class RepositorioFilmes extends Repositorio {
 						getNextId(), filme.getNome(), filme.getIdGenero(),
 						filme.getAnoLancamento(), filme.getDuracao());
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	public void alterar(Filme filme) throws SQLException {
@@ -98,21 +94,13 @@ public class RepositorioFilmes extends Repositorio {
 						filme.getAnoLancamento(), filme.getDuracao(),
 						filme.getIdFilme());
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	public void excluir(int id) throws SQLException {
 		String sql = String.format("DELETE FROM FILME WHERE idFilme = %s", id);
 
-		Connection conn = Conexao.getConexao();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(sql);
-		stmt.close();
-		conn.close();
+		InsertUpdateDelete(sql);
 	}
 
 	@Override

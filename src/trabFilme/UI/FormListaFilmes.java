@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import trabFilme.Negocios.*;
 import trabFilme.Persistencia.*;
@@ -21,11 +24,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
 
 public class FormListaFilmes extends JDialog {
-	private JTable table;
 
 	private final RegrasFilmes regrasFilmes;
+	private JTable table;
 
 	/**
 	 * Create the dialog.
@@ -74,6 +79,9 @@ public class FormListaFilmes extends JDialog {
 		JButton btnConsultar = new JButton("Consultar");
 		toolBar.add(btnConsultar);
 
+		JScrollPane scrollPane = new JScrollPane();
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("idFilme");
 		model.addColumn("Nome");
@@ -83,7 +91,7 @@ public class FormListaFilmes extends JDialog {
 
 		table = new JTable(model);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getContentPane().add(table, BorderLayout.CENTER);
+		scrollPane.setViewportView(table);
 
 		regrasFilmes = new RegrasFilmes();
 	}

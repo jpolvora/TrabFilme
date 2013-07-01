@@ -21,12 +21,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
 
 public class FormListaGeneros extends JDialog {
 
-	private JTable table;
-
 	private final RegrasGeneros regrasGeneros;
+	private JTable table;
 
 	/**
 	 * Create the dialog.
@@ -73,13 +74,16 @@ public class FormListaGeneros extends JDialog {
 		JButton btnConsultar = new JButton("Consultar");
 		toolBar.add(btnConsultar);
 
+		JScrollPane scrollPane = new JScrollPane();
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("idGenero");
 		model.addColumn("Descrição");
 
 		table = new JTable(model);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getContentPane().add(table, BorderLayout.CENTER);
+		scrollPane.setViewportView(table);
 
 		regrasGeneros = new RegrasGeneros();
 	}
